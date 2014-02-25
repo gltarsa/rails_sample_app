@@ -6,6 +6,7 @@ gem 'pg'
 group :development, :test do
   gem 'sqlite3'  # Use sqlite3 as the database for Active Record
   gem 'rspec-rails'
+  gem 'slim-rails'
 end
 
 group :assets do
