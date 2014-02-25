@@ -2,11 +2,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.3'  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'pg'
+gem 'slim-rails'
 
 group :development, :test do
-  gem 'sqlite3'  # Use sqlite3 as the database for Active Record
+#  gem 'sqlite3'  # Use sqlite3 as the database for Active Record
   gem 'rspec-rails'
-  gem 'slim-rails'
+#  gem 'guard-rspec'
+  gem 'spork-rails'
 end
 
 group :assets do
@@ -18,6 +20,7 @@ end
 gem 'jquery-rails'  # Use jquery as the JavaScript library
 
 group :test do
+  gem 'selenium-webdriver'
   gem 'capybara'
   gem 'pry'
 end

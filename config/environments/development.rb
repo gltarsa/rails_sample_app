@@ -26,4 +26,13 @@ SampleApp::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+
+  # GT: suggested defaults from the Slim docs
+  # Indent html for pretty debugging and do not sort attributes (Ruby 1.8)
+  Slim::Engine.set_default_options :pretty => true, :sort_attrs => false
+
+  # Indent html for pretty debugging and do not sort attributes (Ruby 1.9)
+  Slim::Engine.set_default_options pretty: true, sort_attrs: false
+
 end
