@@ -17,6 +17,7 @@ gem 'jquery-rails'  # Use jquery as the JavaScript library
 
 group :test do
   gem 'capybara'
+  gem 'pry'
 end
 
 gem 'turbolinks'  # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
