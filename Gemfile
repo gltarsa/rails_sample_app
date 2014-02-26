@@ -26,6 +26,11 @@ group :test do
   gem 'pry'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
+
 gem 'turbolinks'  # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 
 gem 'jbuilder', '~> 1.2'  # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
