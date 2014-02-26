@@ -4,6 +4,7 @@ gem 'rails', '4.0.3'  # Bundle edge Rails instead: gem 'rails', github: 'rails/r
 gem 'pg'
 gem 'slim-rails'
 gem 'bootstrap-sass'
+gem 'bcrypt-ruby'
 
 group :development, :test do
 #  gem 'sqlite3'  # Use sqlite3 as the database for Active Record
