@@ -7,7 +7,7 @@ development:
   
 test:
   adapter : postgresql
-  database: sample_app_development
+  database: sample_app_test
   username: tarsa
   password:
   host: localhost
