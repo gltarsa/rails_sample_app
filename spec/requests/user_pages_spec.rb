@@ -103,6 +103,7 @@ describe "User pages" do
         before { click_button submit }
         let(:user) { User.find_by(email: 'user@example.com') }
 
+        it { should have_link('Sign out') }
         it { should have_title(user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
@@ -149,6 +150,19 @@ describe "User pages" do
 
       it { should have_content('error') }
     end
+
+    describe "forbidden attributes" do
+      let(:params) do
+        { user: { admin: true, password: user.password,
+            password_confirmation: user.password } }
+      end
+      before do
+        sign_in user, no_capybara: true
+        patch user_path(user), params
+      end
+      specify { expect(user.reload).not_to be_admin }
+    end
+
   end # edit
 
 end # User pages
