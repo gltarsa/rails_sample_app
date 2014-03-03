@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'pry'
-require_relative "../support/utilities.rb"
 
 describe "Static pages" do
   let(:base_title) { "Ruby on Rails Tutorial Sample App" }

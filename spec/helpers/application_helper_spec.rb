@@ -1,5 +1,4 @@
 require 'spec_helper'
-require_relative "../support/utilities.rb"
 
 describe ApplicationHelper do
 

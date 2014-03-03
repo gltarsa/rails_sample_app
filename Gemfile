@@ -31,6 +31,7 @@ gem 'jquery-rails'  # Use jquery as the JavaScript library
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
+  gem 'launchy'
   gem 'pry'
 end
 

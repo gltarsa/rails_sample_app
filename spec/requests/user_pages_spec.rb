@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative "../support/utilities.rb"
+require_relative "../support/utilities"
 
 describe "User pages" do
 
@@ -39,12 +39,13 @@ describe "User pages" do
 
     describe "as an admin user" do
       let(:admin) { FactoryGirl.create(:admin) }
-      FactoryGirl.create(:user)
-
       before do
+        FactoryGirl.create(:user)  # added to avoid "already used error"
         sign_in admin
         visit users_path
       end
+
+      after(:all)  { User.delete_all } # added to avoid "already used error"
 
       it { should have_link('delete', href: user_path(User.first)) }
       it "should be able to delete another user" do
@@ -82,13 +83,13 @@ describe "User pages" do
       it "should not create a user" do
         expect { click_button submit }.not_to change(User, :count)
       end
-    end
 
-    describe "after submission" do
-      before { click_button submit }
+      describe "after submission" do
+        before { click_button submit }
 
-      it { should have_title('Sign up')}
-      it { should have_content('error')}
+        it { should have_title('Sign up')}
+        it { should have_content('error') }
+      end
     end
 
     describe "with valid information" do
@@ -100,12 +101,15 @@ describe "User pages" do
       end
 
       describe "after saving the user" do
-        before { click_button submit }
+        before {
+#          sign_in user
+          click_button submit
+        }
         let(:user) { User.find_by(email: 'user@example.com') }
 
         it { should have_link('Sign out') }
         it { should have_title(user.name) }
-        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { should have_success_message('Welcome') }
       end
 
       it "should create a user" do
@@ -125,6 +129,7 @@ describe "User pages" do
       it { should have_content("Update your profile") }
       it { should have_title("Edit user") }
       it { should have_link('change', href: 'http://gravatar.com/emails') }
+      it { should have_selector("a[href='http://gravatar.com/emails'][target='_blank']") }
     end
 
     describe "with valid information" do
@@ -139,7 +144,7 @@ describe "User pages" do
       end
 
       it { should have_title(new_name) }
-      it { should have_selector('div.alert.alert-success') }
+      it { should have_success_message("updated") }
       it { should have_link('Sign out', href: signout_path) }
       specify { expect(user.reload.name).to  eq new_name }
       specify { expect(user.reload.email).to eq new_email }
@@ -153,8 +158,7 @@ describe "User pages" do
 
     describe "forbidden attributes" do
       let(:params) do
-        { user: { admin: true, password: user.password,
-            password_confirmation: user.password } }
+        { user: { admin: true, password: user.password, password_confirmation: user.password } }
       end
       before do
         sign_in user, no_capybara: true
