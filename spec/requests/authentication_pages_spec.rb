@@ -59,8 +59,8 @@ describe "Authentication" do
           it "should render the desired protected page" do
             expect(page).to have_title('Edit user')
           end
-        end
-      end
+        end # attempt visit to protected page
+      end # for non-signed in users
 
       describe "in the Users controller" do
         describe "visiting the edit page" do
@@ -77,7 +77,21 @@ describe "Authentication" do
           before { visit users_path }
           it { should have_title('Sign in') }
         end
-      end
+      end # in the Users controller
+
+      describe "in the Microposts controller" do
+
+        describe "submitting to the create action" do
+          before { post microposts_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+# possible issue with implementation at Tutorial 10.3.1 area
+          before { delete micropost_path(FactoryGirl.create(:micropost, user: user)) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end # in the Microposts controller
 
       describe "when attempting to visit a protected page" do
         before do
