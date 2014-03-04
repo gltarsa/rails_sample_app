@@ -29,6 +29,21 @@ describe "Micropost pages" do
         expect { click_button "Post" }.to change(Micropost, :count).by(1)
       end
     end
+
+    # this code take 35+ seconds to run and doesn' change much
+    describe "pagination" do
+
+      before(:all) { 35.times { FactoryGirl.create(:micropost, user: user) } }
+      after(:all)  { User.delete_all }
+
+      it { should have_selector('div.pagination') }
+
+      it "should list each user" do
+        User.paginate(page: 1).each do |user|
+          expect(page).to have_selector('li', text: user.name)
+        end
+      end 
+    end # pagination
   end # micropost creation
 
   describe "micropost destruction" do
