@@ -8,8 +8,6 @@ gem 'bcrypt-ruby'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem 'launchy'
-
 
 group :development, :test do
 #  gem 'sqlite3'  # Use sqlite3 as the database for Active Record
@@ -19,7 +17,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner', github: "bmabey/database_cleaner"
-  gem 'rtags'
+  gem 'ripper-tags'
+  gem 'launchy'
 end
 
 group :assets do
@@ -33,7 +32,6 @@ gem 'jquery-rails'  # Use jquery as the JavaScript library
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
-  gem 'launchy'
   gem 'pry'
 end
 
