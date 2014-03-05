@@ -10,7 +10,7 @@
       span
         b
           | Microposts:
-        = @user.microposts.count
+        =< @user.microposts.count
     section
       = render 'shared/stats'
       - if @users.any?
