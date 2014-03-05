@@ -34,9 +34,7 @@ def make_users
 end # end make users
 
 def make_microposts
- puts "called make_microposts"
   users = User.all(limit: 6)
-puts "users = #{users.inspect}"
   50.times do
     content = Faker::Lorem.sentence(5)
     users.each { |user| user.microposts.create!(content: content) }
@@ -44,9 +42,7 @@ puts "users = #{users.inspect}"
 end # end make_microposts
 
 def make_relationships
-puts "called make_relationships"
   users = User.all
-puts "for #{users.count} users"
   user  = users.first
   followed_users = users[1..49]
   followers      = users[3..40]
