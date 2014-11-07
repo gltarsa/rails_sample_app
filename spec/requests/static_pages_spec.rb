@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Static pages" do
-  let(:base_title) { "Ruby on Rails Tutorial Sample App" }
+  let(:base_title) { "Ruby on Rails Tutorial Tweeter App" }
 
   subject { page }
 
@@ -13,7 +13,7 @@ describe "Static pages" do
 
   describe "Home page" do
     before { visit root_path }
-    let(:heading)    { 'Sample App' }
+    let(:heading)    { 'Tweeter App' }
     let(:page_title) { '' }
 
     it_should_behave_like "all static pages"
@@ -84,7 +84,7 @@ describe "Static pages" do
     click_link "Home"
     click_link "Sign up now!"
     expect(page).to have_title(full_title('Sign up'))
-    click_link "sample app"
+    click_link "tweeter app"
     expect(page).to have_title(full_title(''))
   end
 end
